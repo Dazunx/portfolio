@@ -1,0 +1,1 @@
+.project-expand-content{display:block;max-height:0;overflow:hidden;opacity:0;transition:max-height .48s ease,opacity .3s ease,padding .3s ease}.project-expand-content.open{max-height:720px;overflow:visible;opacity:1;padding-top:10px}.project-expand-content>*{overflow:visible}

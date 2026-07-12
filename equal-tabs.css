@@ -1,0 +1,1 @@
+.weekly-project .project-tab-panel{box-sizing:border-box;overflow-y:auto;overscroll-behavior:contain;transition:opacity .28s ease}.weekly-project .project-tab-panel.video-panel{overflow:hidden}.weekly-project .project-tab-panel[hidden]{display:none}.weekly-project .video-panel video{aspect-ratio:16/9;object-fit:contain}
