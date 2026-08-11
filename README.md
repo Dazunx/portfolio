@@ -4,7 +4,7 @@
 
 ## Portfolio
 
-[포트폴리오 바로가기](https://dazunx.github.io/portfolio/)
+[포트폴리오 바로가기](https://portfolio-phi-steel-36.vercel.app/)
 
 ## Contents
 
