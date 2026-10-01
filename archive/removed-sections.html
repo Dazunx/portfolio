@@ -1,0 +1,130 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Removed sections archive</title>
+<!-- 2026-10-01 포트폴리오 정리 때 뺀 섹션 보관용. index.html에서 쓰지 않음.
+     복원: 필요한 블록을 index.html의 같은 위치에 다시 붙여 넣으면 됨. 전체 원본은 git 커밋 b6c446f 참고. -->
+
+<!-- ===== 타임라인 (journey) ===== -->
+    <!-- Journey -->
+    <section class="section container split" id="journey">
+      <div>
+        <p class="kicker">## log</p>
+        <h2 class="section-title">깊게 파고든 연구를<br />사용자에게 닿는 서비스로</h2>
+      </div>
+      <ol class="timeline">
+        <li><a href="#project-newleaf"><time>2026.08</time><strong>잎새로</strong></a></li>
+        <li><a href="#project-jamitda"><time>2026.07</time><strong>JAM iT, DA!</strong></a></li>
+        <li><a href="#project-selah"><time>2026.07</time><strong>Selah</strong><em>진행 중</em></a></li>
+        <li><a href="#project-weekly"><time>2026.05</time><strong>Weekly Eating</strong></a></li>
+        <li><a href="#education"><time>2026.01</time><strong>삼성청년 SW·AI 아카데미(SSAFY)</strong><em>진행 중</em></a></li>
+        <li><a href="#experience"><time>2025.06</time><strong>스트라드비젼 인턴</strong></a></li>
+        <li><a href="#project-battery"><time>2025.03</time><strong>1년 뒤 배터리 성능 예측</strong><em>ASK 2025 우수 논문상</em></a></li>
+        <li><a href="#project-battery"><time>2024.11</time><strong>현재 주행가능거리 예측</strong><em>캡스톤 경진대회 대상</em></a></li>
+        <li><a href="#project-geomagnetic"><time>2024.07</time><strong>지자기 교란 지수 예측</strong><em>한국정보과학회 우수 논문상</em></a></li>
+      </ol>
+    </section>
+
+
+<!-- ===== Weekly Eating 프로젝트 ===== -->
+      <article class="project" id="project-weekly">
+        <header class="project-head">
+          <div>
+            <time>2026.05 — 2026.06</time>
+            <h3>Weekly Eating</h3>
+            <p class="project-summary">일정과 냉장고 속 재료를 반영해, 일주일 식사를 계획해 주는 서비스입니다.</p>
+            <p class="project-role">인증부터 식단, 장보기, 냉장고까지 백엔드를 맡았습니다.</p>
+          </div>
+          <dl class="facts">
+            <div><dt>역할</dt><dd>Backend</dd></div>
+            <div><dt>API 구현</dt><dd>20개</dd></div>
+            <div><dt>기간</dt><dd>5주</dd></div>
+            <div><dt>팀</dt><dd>2인 · SSAFY</dd></div>
+          </dl>
+        </header>
+
+        <div class="gallery">
+          <img loading="lazy" src="data/weekly-eating/01_4.png" alt="생성된 일주일 식단 화면" />
+          <img loading="lazy" src="data/weekly-eating/02_1.png" alt="AI 메뉴 재추천 화면" />
+          <img loading="lazy" src="data/weekly-eating/03.png" alt="식단별 상세 레시피 화면" />
+          <img loading="lazy" src="data/weekly-eating/04.png" alt="장보기와 냉장고 보관을 연결한 화면" />
+          <img loading="lazy" src="data/weekly-eating/05.png" alt="유통기한을 관리하는 냉장고 화면" />
+        </div>
+
+        <div class="cases">
+          <article class="case">
+            <div class="case-head"><h4>내 데이터만 볼 수 있게</h4><span class="tech">Spring Security · MyBatis</span></div>
+            <ol class="steps">
+              <li><b>문제</b><span>JWT는 누가 로그인했는지만 알려줘서, <strong>식단 ID만 바꾸면 남의 식단을 조회</strong>할 위험이 있었습니다.</span></li>
+              <li><b>해결</b><span><em class="kw">인증과 인가를 분리</em>해, 모든 조회 조건에 <em class="kw">토큰 속 사용자 ID</em>를 넣었습니다.</span></li>
+            </ol>
+            <pre class="query"><span>- WHERE meal_plan_id = #{mealPlanId}</span>
+<span class="add">+ WHERE meal_plan_id = #{mealPlanId}</span>
+<span class="add">+   AND user_id = #{userId}</span></pre>
+            <p class="result"><b>결과</b><span><strong>자기 데이터만 조회</strong>되고, 없는 데이터와 남의 데이터는 같은 404로 응답합니다.</span></p>
+          </article>
+          <article class="case">
+            <div class="case-head"><h4>AI가 만든 식단을 저장 전에 검증</h4><span class="tech">검증 · 로깅</span></div>
+            <ol class="steps">
+              <li><b>문제</b><span>AI 서버가 200을 보내도 <strong>식단 내용이 올바르다는 보장은 없었습니다.</strong></span></li>
+              <li><b>해결</b><span><em class="kw">응답 구조</em>와 <em class="kw">도메인 규칙</em>을 차례로 검사하는 2단계 검증을 만들었습니다.</span></li>
+            </ol>
+            <div class="layers"><span>① 응답 구조 검증</span><i>→</i><span>② 도메인 규칙 검증</span></div>
+            <p class="result"><b>결과</b><span><strong>검증을 통과한 식단만 저장</strong>되고, <em class="kw">X-Request-Id</em>로 두 서버의 로그를 연결했습니다.</span></p>
+          </article>
+        </div>
+
+        <video controls preload="metadata" playsinline>
+          <source src="data/weekly-eating/weekly-eating-시연영상.mp4" type="video/mp4" />
+          브라우저에서 영상을 재생할 수 없습니다.
+        </video>
+      </article>
+
+<!-- ===== 잎새로 · AI 답변 SSE 중계 ===== -->
+          <article class="case">
+            <div class="case-head"><h4>AI 답변 실시간 중계 안정화</h4><span class="tech">SSE · 동시성</span></div>
+            <ol class="steps">
+              <li><b>문제</b><span>연결 유지 신호와 답변이 <strong>같은 연결에 동시에 쓰여</strong> 연결이 끊겼고, 사용자가 떠나도 AI는 답변을 계속 만들었습니다.</span></li>
+              <li><b>해결</b><span>쓰기와 종료를 <em class="kw">하나의 락</em>으로 묶고, 종료 신호가 오면 <em class="kw">AI 스트림 구독을 취소</em>했습니다.</span></li>
+            </ol>
+            <p class="result"><b>결과</b><span>연결이 안정적으로 닫히고, 사용자가 떠나면 <strong>AI 답변 생성도 즉시 멈춥니다.</strong></span></p>
+          </article>
+
+<!-- ===== JAM iT, DA! · 결과 한 번만 반영 ===== -->
+          <article class="case">
+            <div class="case-head"><h4>분석 결과가 한 번만 반영되게</h4><span class="tech">RabbitMQ · 상태 관리</span></div>
+            <ol class="steps">
+              <li><b>문제</b><span>워커가 보낸 분석 결과가 <strong>두 번 오거나, 취소한 작업의 결과가 늦게</strong> 도착할 수 있었습니다.</span></li>
+              <li><b>해결</b><span>작업 상태를 정의하고 <em class="kw">행 락</em>으로 현재 상태를 확인해, <em class="kw">끝난 작업에는 결과를 반영하지 않게</em> 했습니다.</span></li>
+            </ol>
+            <p class="result"><b>결과</b><span>같은 결과가 여러 번 와도 <strong>한 번만 반영</strong>되고, 잘못된 메시지는 버려 무한 재시도를 막았습니다.</span></p>
+          </article>
+
+<!-- ===== Selah · FCM 실패 처리 ===== -->
+          <article class="case">
+            <div class="case-head"><h4>푸시 알림 실패를 원인별로 처리</h4><span class="tech">FCM · 재시도</span></div>
+            <ol class="steps">
+              <li><b>문제</b><span>알림 실패를 원인과 상관없이 <strong>모두 같은 예외</strong>로 처리하고 있었습니다.</span></li>
+              <li><b>해결</b><span>실패를 <em class="kw">무효 토큰 · 설정 오류 · 일시 장애</em>로 나눠, 무효 토큰은 삭제하고 일시 장애만 <em class="kw">최대 3번 재시도</em>했습니다.</span></li>
+            </ol>
+            <p class="result"><b>결과</b><span>재시도 동작을 통합 테스트로 검증했고, <strong>한 기기의 실패가 다른 기기 발송을 막지 않습니다.</strong></span></p>
+          </article>
+
+<!-- ===== Selah · 로그아웃 트랜잭션 ===== -->
+          <article class="case">
+            <div class="case-head"><h4>로그아웃이 반만 처리되지 않게</h4><span class="tech">JWT · 트랜잭션</span></div>
+            <ol class="steps">
+              <li><b>문제</b><span>기기 삭제와 토큰 폐기가 따로 실행돼 <strong>로그아웃이 반만 처리</strong>될 수 있었습니다.</span></li>
+              <li><b>해결</b><span><em class="kw">Refresh Token을 DB에 저장</em>해 재발급 때 기존 토큰을 폐기하고, 로그아웃은 <em class="kw">한 트랜잭션</em>으로 묶었습니다.</span></li>
+            </ol>
+            <p class="result"><b>결과</b><span>로그아웃은 <strong>전부 처리되거나 전부 취소</strong>되고, 무효·폐기·만료 토큰을 구분해 응답합니다.</span></p>
+          </article>
+
+<!-- ===== 스트라드비젼 · 주행 장면 JSON ===== -->
+        <article class="case">
+          <div class="case-head"><h4>주행 장면을 바로 찾는 JSON 기록 <span class="badge">제안</span></h4><span class="tech">데이터 파이프라인</span></div>
+          <ol class="steps">
+            <li><b>문제</b><span>주차나 유턴 장면을 찾으려면 <strong>긴 영상을 처음부터 봐야</strong> 했습니다.</span></li>
+            <li><b>해결</b><span>CAN 신호 패턴으로 주행 상황을 분류하고, <em class="kw">발생 시각을 JSON으로 기록</em>하자고 제안해 구현했습니다.</span></li>
+          </ol>
+          <p class="result"><b>결과</b><span>원하는 장면을 <strong>시각으로 바로 찾을 수 있게</strong> 됐습니다.</span></p>
+        </article>
