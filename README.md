@@ -23,4 +23,4 @@
 ## Contact
 
 - Email: [edj10015@gmail.com](mailto:edj10015@gmail.com)
-- LinkedIn: [dajeonglee02](https://www.linkedin.com/in/dajeonglee02)
+- GitHub: [Dazunx](https://github.com/Dazunx)

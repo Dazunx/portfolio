@@ -1,1 +1,0 @@
-html{scroll-snap-type:y proximity;scroll-padding-top:82px}main>section{scroll-snap-align:none}.hero,.portfolio-index,.contact{scroll-snap-align:start;scroll-snap-stop:normal}@media(max-width:800px){html{scroll-padding-top:70px}}@media(prefers-reduced-motion:reduce){html{scroll-snap-type:none;scroll-behavior:auto}}
